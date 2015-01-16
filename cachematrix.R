@@ -8,28 +8,27 @@
 
 makeCacheMatrix <- function(m = matrix()) {	## input m will be a matrix
 
-
 	i <- NULL	##  i will be our 'inverse' and it's reset to NULL every 
 			##  time makeCacheMatrix is called
 
 	set <- function(matrix) {	## takes an input matrix
 		m <<- matrix	## saves the input matrix
 		i <<- NULL	## resets the inverse to NULL, basically what happens when a new object is generated.
-    }
+	}
 
-					##  note these next three functions are defined but not run when makeVector is called.
-					##  instead, they will be used by cacheSolve() to get values for x or for
-					##  i (inverse) and for setting the inverse.  These are usually called object 'methods'
+	##  note these next three functions are defined but not run when makeVector is called.
+	##  instead, they will be used by cacheSolve() to get values for x or for
+	##  i (inverse) and for setting the inverse.  These are usually called object 'methods'
 
 	get <- function() { m }	## this function returns the value of the original matrix
     
 	setinverse <- function(inverse)  { i <<- inverse }
-					## this is called by cachemean() during the first cacheSolve()
-					## access and it will store the value using superassignment
+	## this is called by cachemean() during the first cacheSolve()
+	## access and it will store the value using superassignment
         
 	getinverse <- function() { i }
-					## this will return the cached value to cacheSolve() on
-					##  subsequent accesses
+	## this will return the cached value to cacheSolve() on
+	##  subsequent accesses
 
 
 	list( set = set, get = get,	##  OK, this is accessed each time makeVector() is called,       
